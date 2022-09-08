@@ -4,6 +4,7 @@ import Layout from '../Layout';
 import Logo from './Logo';
 import Search from './Search';
 import Auth from './Auth';
+import Heading from './Heading';
 
 // eslint-disable-next-line arrow-body-style
 export const Header = props => {
@@ -12,9 +13,9 @@ export const Header = props => {
       <Layout>
         <div className={style.gridContainer}>
           <Logo />
-          <h1>заголовок</h1>
+          <Heading text='Главная' />
           <Search />
-          <Auth auth='Maks'/>
+          <Auth auth='' />
         </div>
       </Layout>
     </header>
