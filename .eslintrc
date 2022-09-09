@@ -200,11 +200,6 @@
     "prefer-rest-params": "error",
     "prefer-spread": "error",
     "rest-spread-spacing": "error",
-    "yield-star-spacing": ["error", "after"],
-    // "react/prop-types": ["enabled", 
-    //   { 
-    //     "ignore": "ignore"         
-    //   }
-    // ]
+    "yield-star-spacing": ["error", "after"],    
   }
 }
