@@ -5,6 +5,7 @@ import notfoto from './img/notphoto.jpg';
 import Content from './Content';
 import Rating from './Rating';
 import Time from './Time';
+import ButtonDelete from './ButtonDelete';
 
 export const Post = ({postData}) => {
   const {title, author, ups, date} = postData;
@@ -14,6 +15,7 @@ export const Post = ({postData}) => {
       <Content props={{title, author}}/>
       <Rating ups={ups} />
       <Time date={date} />
+      <ButtonDelete />
     </li>
   );
 };
