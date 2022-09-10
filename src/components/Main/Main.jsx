@@ -1,13 +1,13 @@
-import React from 'react';
 import style from './Main.module.css';
 import Layout from '../Layout';
+import Tabs from './Tabs';
+import List from './List';
 
-// eslint-disable-next-line arrow-body-style
-export const Main = props => {
-  return (
-    <main className={style.main}>
-      <Layout>
-      </Layout>
-    </main>
-  );
-};
+export const Main = props => (
+  <main className={style.main}>
+    <Layout>
+      <Tabs />
+      <List />
+    </Layout>
+  </main>
+);
