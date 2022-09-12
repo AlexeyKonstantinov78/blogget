@@ -15,9 +15,14 @@ const LIST = [
 export const Main = props => {
   const [list, setList] = useState(LIST);
 
+  const addItem = () => {
+    setList(list.concat(assignId({value: 'новый Пост'})));
+  };
+
   return (
     <main className={style.main}>
       <Layout>
+        <button onClick={addItem}>Add item</button>
         <Tabs list={list} setList={setList}/>
         <List />
       </Layout>
