@@ -1,13 +1,20 @@
-import React from 'react';
 import style from './Tabs.module.css';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line arrow-body-style
-export const Tabs = props => {
+export const Tabs = ({list}) => {
+  console.log();
   return (
     <ul className={style.list}>
-      <li><a href="/">Главная</a></li>
-      <li><a href="/">Просмотренные</a></li>
-      <li><a href="/">Сохраненные</a></li>
-      <li><a href="/">Мои посты</a></li>
+      {list.map(({value, id}) => (
+        <li key={id}>
+          <button>
+            <a href="/">{value}</a>
+          </button>
+        </li>
+      ))}
     </ul>);
+};
+
+Tabs.propTypes = {
+  list: PropTypes.array,
 };

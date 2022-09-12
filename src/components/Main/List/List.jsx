@@ -10,6 +10,7 @@ export const List = props => {
       author: 'Nikname1',
       ups: 77,
       date: '2020-02-24T00:45:00.000Z',
+      id: '123',
     },
     {
       thumbnail: '',
@@ -17,6 +18,7 @@ export const List = props => {
       author: 'Nikname2',
       ups: 21,
       date: '2022-01-24T00:45:00.000Z',
+      id: '124',
     },
     {
       thumbnail: '',
@@ -24,6 +26,7 @@ export const List = props => {
       author: 'Nikname3',
       ups: 23,
       date: '2022-02-20T00:45:00.000Z',
+      id: '125',
     },
     {
       thumbnail: '',
@@ -31,22 +34,15 @@ export const List = props => {
       author: 'Nikname4',
       ups: 25,
       date: '2022-02-21T00:45:00.000Z',
+      id: '126',
     },
   ];
 
   return (
     <ul className={style.list}>
-      {postsData.map((postData, index) => (
-        <Post key={index} postData={postData}/>
+      {postsData.map((postData) => (
+        <Post key={postData.id} postData={postData}/>
       ))}
-      {
-        [
-          <Post key='0' postData={postsData[0]}/>,
-          <Post key='1' postData={postsData[1]}/>,
-          <Post key='2' postData={postsData[2]}/>,
-          <Post key='3' postData={postsData[3]}/>,
-        ]
-      }
     </ul>
   );
 };
