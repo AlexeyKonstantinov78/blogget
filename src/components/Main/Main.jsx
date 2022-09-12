@@ -16,7 +16,8 @@ export const Main = props => {
   const [list, setList] = useState(LIST);
 
   const addItem = () => {
-    setList(list.concat(assignId({value: 'новый Пост'})));
+    // setList(list.concat(assignId({value: 'новый Пост'})));
+    setList([...list, assignId({value: 'новый Пост'})]);
   };
 
   return (
