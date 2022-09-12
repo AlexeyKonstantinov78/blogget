@@ -1,24 +1,32 @@
 import style from './Tabs.module.css';
 import PropTypes from 'prop-types';
+import {useState} from 'react';
+import {assignId} from '../../../utils/generateRandomId';
 
-export const Tabs = ({list, setList, addItem}) => {
-  const handleClick = id => {
-    setList(list.filter(item => item.id !== id));
-  };
+const LIST = [
+  {value: `Главная`},
+  {value: `Просмотренные`},
+  {value: `Сохраненные`},
+  {value: `Мои посты`},
+].map(assignId);
+
+export const Tabs = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <>
-      <button onClick={addItem}>Add item</button>
-
-      <ul className={style.list}>
-        {list.map(({value, id}) => (
+      <button onClick={
+        () => setIsDropdownOpen(!isDropdownOpen)}
+      >Add item</button>
+      {isDropdownOpen && <ul className={style.list}>
+        {LIST.map(({value, id}) => (
           <li key={id}>
-            <button onClick={() => handleClick(id)}>
+            <button>
               <a href="/">{value}</a>
             </button>
           </li>
         ))}
-      </ul>
+      </ul>}
     </>
   );
 };
