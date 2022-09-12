@@ -14,20 +14,30 @@ export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <>
-      <button onClick={
-        () => setIsDropdownOpen(!isDropdownOpen)}
-      >Add item</button>
-      {isDropdownOpen && <ul className={style.list}>
-        {LIST.map(({value, id}) => (
-          <li key={id}>
-            <button>
-              <a href="/">{value}</a>
-            </button>
-          </li>
-        ))}
-      </ul>}
-    </>
+    <div className={style.container}>
+      <div className={style.wrapperBtn}>
+        <button className={style.btn} onClick={
+          () => setIsDropdownOpen(!isDropdownOpen)}
+        >Add item</button>
+      </div>
+
+      {isDropdownOpen &&
+        <ul className={style.list}
+          onClick={() => setIsDropdownOpen(false)}
+        >
+          {LIST.map(({value, id}) => (
+            <li className={style.item} key={id}>
+              <button className={style.btn}>
+                <a href="/"
+                  onClick={(event) => event.preventDefault()}>
+                  {value}
+                </a>
+              </button>
+            </li>
+          ))}
+        </ul>
+      }
+    </div>
   );
 };
 
