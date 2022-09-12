@@ -23,8 +23,7 @@ export const Main = props => {
   return (
     <main className={style.main}>
       <Layout>
-        <button onClick={addItem}>Add item</button>
-        <Tabs list={list} setList={setList}/>
+        <Tabs list={list} setList={setList} addItem={addItem}/>
         <List />
       </Layout>
     </main>
