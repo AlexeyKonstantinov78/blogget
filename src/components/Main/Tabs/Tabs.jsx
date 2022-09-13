@@ -2,6 +2,12 @@ import style from './Tabs.module.css';
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 import {assignId} from '../../../utils/generateRandomId';
+import {ReactComponent as ArrowIcon} from './img/arrow.svg';
+import {ReactComponent as EyeIcon} from './img/eye.svg';
+import {ReactComponent as HomeIcon} from './img/home.svg';
+import {ReactComponent as PostIcon} from './img/post.svg';
+import {ReactComponent as SaveIcon} from './img/save.svg';
+
 
 const LIST = [
   {value: `Главная`},
@@ -18,7 +24,9 @@ export const Tabs = () => {
       <div className={style.wrapperBtn}>
         <button className={style.btn} onClick={
           () => setIsDropdownOpen(!isDropdownOpen)}
-        >Add item</button>
+        >Add item
+          <ArrowIcon width={15} height={15}/>
+        </button>
       </div>
 
       {isDropdownOpen &&
