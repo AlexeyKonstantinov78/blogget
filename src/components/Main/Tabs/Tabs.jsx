@@ -10,7 +10,9 @@ import {ReactComponent as ArrowIcon} from './img/arrow.svg';
 import {useEffect} from 'react';
 import {debounceRaf} from '../../../utils/debaunce';
 import {Text} from '../../../UI/Text';
+import {InlineSvg} from '../../../UI/InlineSvg';
 
+console.log(<InlineSvg src='./img/hot.svg' />);
 const LIST = [
   {value: `Главная`, Icon: HomeIcon},
   {value: `Топ`, Icon: TopIcon},
@@ -47,6 +49,7 @@ export const Tabs = () => {
         <Text As='button' className={style.btn} onClick={
           () => setIsDropdownOpen(!isDropdownOpen)}
         >{tabName}
+          <InlineSvg src='./img/hot.svg' />
           <ArrowIcon width={15} height={15}/>
         </Text>
       </Text>}
