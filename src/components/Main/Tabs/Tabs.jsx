@@ -7,7 +7,7 @@ import {ReactComponent as EyeIcon} from './img/eye.svg';
 import {ReactComponent as HomeIcon} from './img/home.svg';
 import {ReactComponent as PostIcon} from './img/post.svg';
 import {ReactComponent as SaveIcon} from './img/save.svg';
-
+import {useEffect} from 'react';
 
 const LIST = [
   {value: `Главная`, Icon: HomeIcon},
@@ -18,18 +18,35 @@ const LIST = [
 
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdown, setIsDropdown] = useState(true);
+
+  const handleResize = () => {
+    if (document.documentElement.clientWidth < 780) {
+      setIsDropdown(true);
+    } else {
+      setIsDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className={style.container}>
-      <div className={style.wrapperBtn}>
+      {isDropdown && <div className={style.wrapperBtn}>
         <button className={style.btn} onClick={
           () => setIsDropdownOpen(!isDropdownOpen)}
         >Add item
           <ArrowIcon width={15} height={15}/>
         </button>
-      </div>
+      </div>}
 
-      {isDropdownOpen &&
+      {(isDropdownOpen || !isDropdown) &&
         <ul className={style.list}
           onClick={() => setIsDropdownOpen(false)}
         >
