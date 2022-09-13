@@ -9,6 +9,7 @@ import {ReactComponent as HotIcon} from './img/hot.svg';
 import {ReactComponent as ArrowIcon} from './img/arrow.svg';
 import {useEffect} from 'react';
 import {debounceRaf} from '../../../utils/debaunce';
+import {Text} from '../../../UI/Text';
 
 const LIST = [
   {value: `Главная`, Icon: HomeIcon},
@@ -41,21 +42,20 @@ export const Tabs = () => {
   }, []);
 
   return (
-    <div className={style.container}>
-      {isDropdown && <div className={style.wrapperBtn}>
-        <button className={style.btn} onClick={
+    <Text As='div' className={style.container}>
+      {isDropdown && <Text As='div' className={style.wrapperBtn}>
+        <Text As='button' className={style.btn} onClick={
           () => setIsDropdownOpen(!isDropdownOpen)}
         >{tabName}
           <ArrowIcon width={15} height={15}/>
-        </button>
-      </div>}
-
+        </Text>
+      </Text>}
       {(isDropdownOpen || !isDropdown) &&
-        <ul className={style.list}
+        <Text As='ul' className={style.list}
           onClick={() => setIsDropdownOpen(false)}
         >
           {LIST.map(({value, id, Icon}) => (
-            <li
+            <Text As='li'
               className={style.item}
               key={id}
               onClick={() => {
@@ -64,18 +64,18 @@ export const Tabs = () => {
                 }
               }}
             >
-              <button className={style.btn}>
-                <a href="/"
+              <Text As='button' className={style.btn}>
+                <Text As='a' href="/"
                   onClick={(event) => event.preventDefault()}>
                   {value}
-                </a>
+                </Text>
                 {Icon && <Icon width={30} height={30}/>}
-              </button>
-            </li>
+              </Text>
+            </Text>
           ))}
-        </ul>
+        </Text>
       }
-    </div>
+    </Text>
   );
 };
 

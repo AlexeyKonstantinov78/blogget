@@ -2,6 +2,22 @@
   text-align: center;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.bolder {
+  font-weight: bolder;
+}
+
+.lighter {
+  font-weight: lighter;
+}
+
+.normal {
+  font-weight: normal;
+}
+
 .black {
   color: var(--black);
 }
