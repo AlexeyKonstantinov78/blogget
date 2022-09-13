@@ -23,7 +23,7 @@ const LIST = [
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(true);
-  const [tabName, setTabName] = useState('Add item');
+  const [tabName, setTabName] = useState('Главная');
 
   const handleResize = () => {
     if (document.documentElement.clientWidth < 780) {
