@@ -40,7 +40,7 @@ export const Tabs = () => {
                   onClick={(event) => event.preventDefault()}>
                   {value}
                 </a>
-                {Icon && <Icon />}
+                {Icon && <Icon width={30} height={30}/>}
               </button>
             </li>
           ))}
