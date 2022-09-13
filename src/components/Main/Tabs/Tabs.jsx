@@ -8,6 +8,7 @@ import {ReactComponent as HomeIcon} from './img/home.svg';
 import {ReactComponent as PostIcon} from './img/post.svg';
 import {ReactComponent as SaveIcon} from './img/save.svg';
 import {useEffect} from 'react';
+import {debounceRaf} from '../../../utils/debaunce';
 
 const LIST = [
   {value: `Главная`, Icon: HomeIcon},
@@ -29,6 +30,8 @@ export const Tabs = () => {
   };
 
   useEffect(() => {
+    const debounceResize = debounceRaf(handleResize);
+    debounceResize();
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => {
