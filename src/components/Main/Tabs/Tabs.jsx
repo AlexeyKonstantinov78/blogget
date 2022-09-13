@@ -10,10 +10,10 @@ import {ReactComponent as SaveIcon} from './img/save.svg';
 
 
 const LIST = [
-  {value: `Главная`},
-  {value: `Просмотренные`},
-  {value: `Сохраненные`},
-  {value: `Мои посты`},
+  {value: `Главная`, Icon: HomeIcon},
+  {value: `Просмотренные`, Icon: EyeIcon},
+  {value: `Сохраненные`, Icon: SaveIcon},
+  {value: `Мои посты`, Icon: PostIcon},
 ].map(assignId);
 
 export const Tabs = () => {
@@ -33,13 +33,14 @@ export const Tabs = () => {
         <ul className={style.list}
           onClick={() => setIsDropdownOpen(false)}
         >
-          {LIST.map(({value, id}) => (
+          {LIST.map(({value, id, Icon}) => (
             <li className={style.item} key={id}>
               <button className={style.btn}>
                 <a href="/"
                   onClick={(event) => event.preventDefault()}>
                   {value}
                 </a>
+                {Icon && <Icon />}
               </button>
             </li>
           ))}
