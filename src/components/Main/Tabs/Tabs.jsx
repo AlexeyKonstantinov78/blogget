@@ -39,7 +39,7 @@ export const Tabs = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  console.log(isDropdownOpen);
+
   return (
     <div className={style.container}>
       {isDropdown && <div className={style.wrapperBtn}>
@@ -58,7 +58,11 @@ export const Tabs = () => {
             <li
               className={style.item}
               key={id}
-              onClick={() => setTabName(value)}
+              onClick={() => {
+                if (isDropdown) {
+                  setTabName(value);
+                }
+              }}
             >
               <button className={style.btn}>
                 <a href="/"
