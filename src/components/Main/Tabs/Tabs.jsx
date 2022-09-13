@@ -2,19 +2,19 @@ import style from './Tabs.module.css';
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 import {assignId} from '../../../utils/generateRandomId';
-import {ReactComponent as ArrowIcon} from './img/arrow.svg';
-import {ReactComponent as EyeIcon} from './img/eye.svg';
 import {ReactComponent as HomeIcon} from './img/home.svg';
-import {ReactComponent as PostIcon} from './img/post.svg';
-import {ReactComponent as SaveIcon} from './img/save.svg';
+import {ReactComponent as TopIcon} from './img/top.svg';
+import {ReactComponent as BestIcon} from './img/best.svg';
+import {ReactComponent as HotIcon} from './img/hot.svg';
+import {ReactComponent as ArrowIcon} from './img/arrow.svg';
 import {useEffect} from 'react';
 import {debounceRaf} from '../../../utils/debaunce';
 
 const LIST = [
   {value: `Главная`, Icon: HomeIcon},
-  {value: `Просмотренные`, Icon: EyeIcon},
-  {value: `Сохраненные`, Icon: SaveIcon},
-  {value: `Мои посты`, Icon: PostIcon},
+  {value: `Топ`, Icon: TopIcon},
+  {value: `Лучшие`, Icon: BestIcon},
+  {value: `Горячие`, Icon: HotIcon},
 ].map(assignId);
 
 export const Tabs = () => {
