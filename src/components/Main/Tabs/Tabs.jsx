@@ -49,7 +49,6 @@ export const Tabs = () => {
         <Text As='button' className={style.btn} onClick={
           () => setIsDropdownOpen(!isDropdownOpen)}
         >{tabName}
-          <InlineSvg src='./img/hot.svg' />
           <ArrowIcon width={15} height={15}/>
         </Text>
       </Text>}
