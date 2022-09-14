@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import style from './Auth.module.css';
 import PropTypes from 'prop-types';
 import {ReactComponent as LoginIcon} from './img/login.svg';
@@ -7,6 +7,7 @@ import {Text} from '../../../UI/Text';
 import {URL} from '../../../API/const';
 
 export const Auth = ({token}) => {
+  const [auth, setAuth] = useState({});
   useEffect(() => {
     if (!token) return;
 
@@ -16,18 +17,29 @@ export const Auth = ({token}) => {
       },
     })
       .then(response => response.json())
-      .then(data => {
-        console.log(data);
+      .then(({name, icon_img: iconImg}) => {
+        const img = iconImg.replace(/\?.*$/, '');
+        setAuth({name, img});
       });
   }, [token]);
 
-  return (<div className={style.container}>
-    {token ? (token) :
-      (<Text As='a' href={urlAuth}>
-        <LoginIcon className={style.svg} width={128} height={128} />
-      </Text>)
-    }
-  </div>
+  return (
+    <div className={style.container}>
+      {auth.name ? (
+        <button className={style.btn}>
+          <img
+            className={style.img}
+            src={auth.img}
+            title={auth.name}
+            alt={auth.name} />
+        </button>
+      ) :
+        (<Text
+          className={style.authLink} As='a' href={urlAuth}>
+          <LoginIcon className={style.svg} width={128} height={128} />
+        </Text>)
+      }
+    </div>
   );
 };
 
