@@ -28,6 +28,6 @@ export const useAuth = (state, token) => {
         setAuth({});
       });
   }, [token]);
-  console.log(auth);
+
   return [auth, setAuth];
 };
