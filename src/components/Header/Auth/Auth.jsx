@@ -1,44 +1,19 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import style from './Auth.module.css';
 import PropTypes from 'prop-types';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 import {urlAuth} from '../../../API/auth';
 import {Text} from '../../../UI/Text';
-import {URL} from '../../../API/const';
+import {useAuth} from '../../../hooks/useAuth';
 
 export const Auth = ({token, delToken}) => {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useAuth({}, token);
   const [logout, setLogout] = useState(false);
 
   const delTokenAuth = () => {
     delToken('');
     setAuth({});
   };
-
-  useEffect(() => {
-    if (!token) return;
-
-    fetch(`${URL}/api/v1/me`, {
-      headers: {
-        Authorization: `bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (response.status === 401) {
-          console.log(response.status);
-          throw new Error(`сервер статус ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(({name, icon_img: iconImg}) => {
-        const img = iconImg.replace(/\?.*$/, '');
-        setAuth({name, img});
-      })
-      .catch(err => {
-        console.error(err);
-        delTokenAuth();
-      });
-  }, [token]);
 
   return (
     <div className={style.container}>
