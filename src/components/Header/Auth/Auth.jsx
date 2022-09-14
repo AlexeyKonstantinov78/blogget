@@ -10,6 +10,11 @@ export const Auth = ({token, delToken}) => {
   const [auth, setAuth] = useState({});
   const [logout, setLogout] = useState(false);
 
+  const delTokenAuth = () => {
+    delToken('');
+    setAuth({});
+  };
+
   useEffect(() => {
     if (!token) return;
 
@@ -18,14 +23,20 @@ export const Auth = ({token, delToken}) => {
         Authorization: `bearer ${token}`,
       },
     })
-      .then(response => response.json())
+      .then((response) => {
+        if (response.status === 401) {
+          console.log(response.status);
+          throw new Error(`сервер статус ${response.status}`);
+        }
+        return response.json();
+      })
       .then(({name, icon_img: iconImg}) => {
         const img = iconImg.replace(/\?.*$/, '');
         setAuth({name, img});
       })
       .catch(err => {
-        console.err(err);
-        setAuth({});
+        console.error(err);
+        delTokenAuth();
       });
   }, [token]);
 
@@ -49,8 +60,7 @@ export const Auth = ({token, delToken}) => {
             <button
               className={style.logout}
               onClick={() => {
-                delToken('');
-                setAuth({});
+                delTokenAuth();
                 setLogout(!logout);
               }}
             >
