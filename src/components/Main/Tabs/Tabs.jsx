@@ -10,9 +10,7 @@ import {ReactComponent as ArrowIcon} from './img/arrow.svg';
 import {useEffect} from 'react';
 import {debounceRaf} from '../../../utils/debaunce';
 import {Text} from '../../../UI/Text';
-import {InlineSvg} from '../../../UI/InlineSvg';
 
-console.log(<InlineSvg src='./img/hot.svg' />);
 const LIST = [
   {value: `Главная`, Icon: HomeIcon},
   {value: `Топ`, Icon: TopIcon},
