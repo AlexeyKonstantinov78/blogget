@@ -8,6 +8,8 @@ import {URL} from '../../../API/const';
 
 export const Auth = ({token}) => {
   const [auth, setAuth] = useState({});
+  const [logout, setLogout] = useState(false);
+
   useEffect(() => {
     if (!token) return;
 
@@ -30,13 +32,21 @@ export const Auth = ({token}) => {
   return (
     <div className={style.container}>
       {auth.name ? (
-        <button className={style.btn}>
-          <img
-            className={style.img}
-            src={auth.img}
-            title={auth.name}
-            alt={auth.name} />
-        </button>
+        <>
+          <button
+            className={style.btn}
+            onClick={() => {
+              setLogout(!logout);
+            }}
+          >
+            <img
+              className={style.img}
+              src={auth.img}
+              title={auth.name}
+              alt={auth.name} />
+          </button>
+          {logout && <button className={style.logout}>Выйти</button>}
+        </>
       ) :
         (<Text
           className={style.authLink} As='a' href={urlAuth}>
