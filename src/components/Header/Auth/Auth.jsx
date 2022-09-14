@@ -6,10 +6,10 @@ import {Text} from '../../../UI/Text';
 
 export const Auth = ({token}) => (
   <div className={style.container}>
-    {token ? token :
-      <Text As='a' href={urlAuth}>
+    {token ? (token) :
+      (<Text As='a' href={urlAuth}>
         <LoginIcon className={style.svg} width={128} height={128} />
-      </Text>
+      </Text>)
     }
   </div>
 );

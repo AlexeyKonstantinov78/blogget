@@ -10,6 +10,7 @@ function App() {
 
   useEffect(() => {
     if (!token) return;
+
     fetch(`${URL}/api/v1/me`, {
       headers: {
         Authorization: `bearer ${token}`,
