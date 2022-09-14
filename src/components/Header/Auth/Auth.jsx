@@ -6,7 +6,7 @@ import {urlAuth} from '../../../API/auth';
 import {Text} from '../../../UI/Text';
 import {URL} from '../../../API/const';
 
-export const Auth = ({token}) => {
+export const Auth = ({token, delToken}) => {
   const [auth, setAuth] = useState({});
   const [logout, setLogout] = useState(false);
 
@@ -45,7 +45,17 @@ export const Auth = ({token}) => {
               title={auth.name}
               alt={auth.name} />
           </button>
-          {logout && <button className={style.logout}>Выйти</button>}
+          {logout &&
+            <button
+              className={style.logout}
+              onClick={() => {
+                delToken('');
+                setAuth({});
+                setLogout(!logout);
+              }}
+            >
+              <a href="/">Выйти</a>
+            </button>}
         </>
       ) :
         (<Text
@@ -59,4 +69,5 @@ export const Auth = ({token}) => {
 
 Auth.propTypes = {
   token: PropTypes.string,
+  delToken: PropTypes.func
 };
