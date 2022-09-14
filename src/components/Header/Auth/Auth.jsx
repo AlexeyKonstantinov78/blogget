@@ -20,6 +20,10 @@ export const Auth = ({token}) => {
       .then(({name, icon_img: iconImg}) => {
         const img = iconImg.replace(/\?.*$/, '');
         setAuth({name, img});
+      })
+      .catch(err => {
+        console.err(err);
+        setAuth({});
       });
   }, [token]);
 
