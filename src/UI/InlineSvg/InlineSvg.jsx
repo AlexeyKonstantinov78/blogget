@@ -3,26 +3,18 @@ import classNames from 'classnames';
 // import style from './InlineSvg.module.css';
 import PropTypes from 'prop-types';
 
-
-export const InlineSvg = props => {
-  const {
-    src,
-    className,
-    width,
-    height
-  } = props;
-
+export const InlineSvg = (props) => {
+  const {src, className, width, height} = props;
   const classes = classNames(className);
   console.log(src);
+
   return (
-    <>
-      <svg
-        src={src}
-        className={classes}
-        width={width}
-        height={height}
-        alt="alt"/>
-    </>
+    <React.FunctionComponent
+      src={src}
+      className={classes}
+      width={width}
+      height={height}
+    />
   );
 };
 
