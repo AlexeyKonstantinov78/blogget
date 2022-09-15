@@ -1,12 +1,14 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import style from './Auth.module.css';
 import PropTypes from 'prop-types';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 import {urlAuth} from '../../../API/auth';
 import {Text} from '../../../UI/Text';
 import {useAuth} from '../../../hooks/useAuth';
+import {tokenContext} from '../../../context/tokenContext';
 
-export const Auth = ({token, delToken}) => {
+export const Auth = () => {
+  const {token, delToken} = useContext(tokenContext);
   const [auth, clearAuth] = useAuth(token);
   const [logout, setLogout] = useState(false);
 
