@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 import {urlAuth} from '../../../API/auth';
 import {Text} from '../../../UI/Text';
-import {useAuth} from '../../../hooks/useAuth';
 import {tokenContext} from '../../../context/tokenContext';
+import {authContext} from '../../../context/authContext';
 
 export const Auth = () => {
   const {delToken} = useContext(tokenContext);
-  const [auth, clearAuth] = useAuth();
   const [logout, setLogout] = useState(false);
+  const {auth, clearAuth} = useContext(authContext);
 
   const delTokenAuth = () => {
     delToken();

@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import Main from './components/Main';
-import {authContext} from './context/authContext';
+import {AuthContextProvider} from './context/authContext';
 import {tokenContext} from './context/tokenContext';
 import {useToken} from './hooks/useToken';
 
@@ -9,10 +9,10 @@ function App() {
 
   return (
     <tokenContext.Provider value={{token, delToken}}>
-      <authContext.Provider value={{}}>
+      <AuthContextProvider>
         <Header />
         <Main />
-      </authContext.Provider>
+      </AuthContextProvider>
     </tokenContext.Provider>
   );
 }
