@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import style from './Header.module.css';
 import Layout from '../Layout';
 import Logo from './Logo';
@@ -8,7 +8,7 @@ import Heading from './Heading';
 import {tokenContext} from '../../context/tokenContext';
 
 export const Header = () => {
-  const {Consumer} = tokenContext;
+  const ctx = useContext(tokenContext);
   return (
     <header className={style.header}>
       <Layout>
@@ -16,9 +16,7 @@ export const Header = () => {
           <Logo />
           <Heading text='Главная' />
           <Search />
-          <Consumer>
-            {ctx => <Auth {...ctx} />}
-          </Consumer>
+          <Auth {...ctx} />
         </div>
       </Layout>
     </header>
