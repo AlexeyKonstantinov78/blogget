@@ -8,12 +8,12 @@ import {useAuth} from '../../../hooks/useAuth';
 import {tokenContext} from '../../../context/tokenContext';
 
 export const Auth = () => {
-  const {token, delToken} = useContext(tokenContext);
-  const [auth, clearAuth] = useAuth(token);
+  const {delToken} = useContext(tokenContext);
+  const [auth, clearAuth] = useAuth();
   const [logout, setLogout] = useState(false);
 
   const delTokenAuth = () => {
-    delToken('');
+    delToken();
     clearAuth();
   };
 
