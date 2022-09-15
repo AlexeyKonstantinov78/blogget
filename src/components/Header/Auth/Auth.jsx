@@ -7,12 +7,12 @@ import {Text} from '../../../UI/Text';
 import {useAuth} from '../../../hooks/useAuth';
 
 export const Auth = ({token, delToken}) => {
-  const [auth, setAuth] = useAuth({}, token);
+  const [auth, clearAuth] = useAuth(token);
   const [logout, setLogout] = useState(false);
 
   const delTokenAuth = () => {
     delToken('');
-    setAuth({});
+    clearAuth();
   };
 
   return (
