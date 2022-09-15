@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Time.module.css';
-import formatDate from '../../../../../utils/formatFate';
+import formatDate from '../../../../../utils/formatDate';
 import PropTypes from 'prop-types';
 
 export const Time = props => (
@@ -11,5 +11,8 @@ export const Time = props => (
 );
 
 Time.propTypes = {
-  date: PropTypes.string,
+  date: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
