@@ -17,7 +17,7 @@ export const Header = () => {
           <Heading text='Главная' />
           <Search />
           <Consumer>
-            {ctx => <Auth token={ctx.token} delToken={ctx.delToken} />}
+            {ctx => <Auth {...ctx} />}
           </Consumer>
         </div>
       </Layout>
