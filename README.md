@@ -37,6 +37,7 @@ utils<br/>
 * Пакет [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) (npm install eslint eslint-plugin-react --save-dev)
 * Пакет [classnames](https://www.npmjs.com/package/classnames) (npm i classnames) 
 * Пакет [react-inlinesvg](https://github.com/gilbarbara/react-inlinesvg) (npm i react-inlinesvg) для создания inline svg;
+* [npm i markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx) (npm i markdown-to-jsx) Компонент
 
 
 Зарегистрировались на:

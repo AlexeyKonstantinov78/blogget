@@ -8,7 +8,15 @@ import Time from './Time';
 import ButtonDelete from './ButtonDelete';
 
 export const Post = ({postData}) => {
-  const {thumbnail, title, author, ups, created: date} = postData;
+  console.log(postData);
+  const {
+    thumbnail,
+    title,
+    author,
+    ups,
+    selftext: markdown,
+    created: date} = postData;
+
   return (
     <li className={style.post}>
       <img
@@ -20,7 +28,7 @@ export const Post = ({postData}) => {
             thumbnail === 'default') ? notfoto : thumbnail
         }
         alt={title} />
-      <Content title={title} author={author} />
+      <Content title={title} author={author} markdown={markdown} />
       <Rating ups={ups} />
       <Time date={date} />
       <ButtonDelete />

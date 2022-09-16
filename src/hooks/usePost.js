@@ -28,6 +28,6 @@ export const usePost = () => {
         console.error(err);
       });
   }, [token]);
-  console.log(posts);
+
   return [posts];
 };
