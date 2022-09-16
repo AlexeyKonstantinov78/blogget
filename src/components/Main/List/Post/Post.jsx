@@ -16,7 +16,8 @@ export const Post = ({postData}) => {
         src={
           (thumbnail === 'self' ||
             thumbnail === undefined ||
-            thumbnail === '') ? notfoto : thumbnail
+            thumbnail === '' ||
+            thumbnail === 'default') ? notfoto : thumbnail
         }
         alt={title} />
       <Content props={{title, author}}/>
