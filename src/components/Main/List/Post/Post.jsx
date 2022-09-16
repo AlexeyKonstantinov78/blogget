@@ -8,8 +8,8 @@ import Time from './Time';
 import ButtonDelete from './ButtonDelete';
 
 export const Post = ({postData}) => {
-  console.log(postData);
   const {
+    id,
     thumbnail,
     title,
     author,
@@ -28,7 +28,7 @@ export const Post = ({postData}) => {
             thumbnail === 'default') ? notfoto : thumbnail
         }
         alt={title} />
-      <Content title={title} author={author} markdown={markdown} />
+      <Content id={id} title={title} author={author} markdown={markdown} />
       <Rating ups={ups} />
       <Time date={date} />
       <ButtonDelete />

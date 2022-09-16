@@ -4,9 +4,15 @@ import {ReactComponent as CloseIcon} from './img/close.svg';
 import PropTypes from 'prop-types';
 import Markdown from 'markdown-to-jsx';
 import ReactDOM from 'react-dom';
+import {useCommentsData} from '../../hooks/useCommentsData';
+import Comments from './Comments';
 
-export const Modal = ({title, author, markdown, close}) => {
+export const Modal = ({id, close}) => {
   const overlayRef = useRef(null);
+  const [{
+    title,
+    author,
+    selftext: markdown}, commentsData] = useCommentsData(id);
 
   const handleClick = (e) => {
     const target = e.target;
@@ -28,21 +34,36 @@ export const Modal = ({title, author, markdown, close}) => {
   return ReactDOM.createPortal(
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        <h2 className={style.title}>{title}</h2>
-        <div className={style.content}>
-          <Markdown options={{
-            override: {
-              a: {
-                props: {
-                  target: '_blank',
-                }
+        {title ? (
+            <>
+              <h2 className={style.title}>{title}</h2>
+              <div className={style.content}>
+                <Markdown options={{
+                  override: {
+                    a: {
+                      props: {
+                        target: '_blank',
+                      }
+                    }
+                  }
+                }}>
+                  {markdown}
+                </Markdown>
+              </div>
+              <p className={style.author}>{author}</p>
+              {(commentsData.length > 0) ?
+                (<Comments commentsData={
+                  commentsData.filter(c => c.author !== undefined)
+                } />) :
+                (<></>)
               }
-            }
-          }}>
-            {markdown}
-          </Markdown>
-        </div>
-        <p className={style.author}>{author}</p>
+            </>
+          ) : (
+            <>
+              <h2 className={style.title}>Загрузка</h2>
+            </>
+          )
+        }
         <button
           className={style.close}
           onClick={close}
@@ -56,6 +77,7 @@ export const Modal = ({title, author, markdown, close}) => {
 };
 
 Modal.propTypes = {
+  id: PropTypes.string,
   markdown: PropTypes.string,
   title: PropTypes.string,
   author: PropTypes.string,
