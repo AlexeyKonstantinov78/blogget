@@ -10,15 +10,18 @@ export const Modal = ({title, author, markdown, close}) => {
 
   const handleClick = (e) => {
     const target = e.target;
-    if (target === overlayRef.current) {
+
+    if (target === overlayRef.current || e.key === 'Escape') {
       close();
     }
   };
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
+    document.addEventListener('keydown', handleClick);
     return () => {
       document.removeEventListener('click', handleClick);
+      document.removeEventListener('keydown', handleClick);
     };
   }, []);
 
