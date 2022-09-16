@@ -3,10 +3,10 @@ import style from './Modal.module.css';
 import {ReactComponent as CloseIcon} from './img/close.svg';
 import PropTypes from 'prop-types';
 import Markdown from 'markdown-to-jsx';
+import ReactDOM from 'react-dom';
 
-export const Modal = ({title, author, markdown, close}) => {
-  console.log(markdown);
-  return (
+export const Modal = ({title, author, markdown, close}) =>
+  ReactDOM.createPortal(
     <div className={style.overlay}>
       <div className={style.modal}>
         <h2 className={style.title}>{title}</h2>
@@ -31,9 +31,9 @@ export const Modal = ({title, author, markdown, close}) => {
           <CloseIcon />
         </button>
       </div>
-    </div>
+    </div>,
+    document.getElementById('modal-root'),
   );
-};
 
 Modal.propTypes = {
   markdown: PropTypes.string,
