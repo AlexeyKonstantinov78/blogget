@@ -21,18 +21,13 @@ export const usePost = () => {
         return response.json();
       })
       .then((postData) => {
-        const data = postData.data.children.map(item => {
-          const {
-            thumbnail, title, author, ups, created_utc: date, id} = item.data;
-          return {thumbnail, title, author, ups, date, id};
-        });
-
+        const data = postData.data.children.map(item => item.data);
         setPosts(data);
       })
       .catch(err => {
         console.error(err);
       });
   }, [token]);
-
+  console.log(posts);
   return [posts];
 };

@@ -8,7 +8,7 @@ import Time from './Time';
 import ButtonDelete from './ButtonDelete';
 
 export const Post = ({postData}) => {
-  const {thumbnail, title, author, ups, date} = postData;
+  const {thumbnail, title, author, ups, created: date} = postData;
   return (
     <li className={style.post}>
       <img
@@ -20,7 +20,7 @@ export const Post = ({postData}) => {
             thumbnail === 'default') ? notfoto : thumbnail
         }
         alt={title} />
-      <Content props={{title, author}}/>
+      <Content title={title} author={author} />
       <Rating ups={ups} />
       <Time date={date} />
       <ButtonDelete />
