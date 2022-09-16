@@ -8,10 +8,6 @@ export const Content = ({title, author, markdown}) => {
   console.log();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const close = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <div className={style.content}>
       <Text As='h2' className={style.title}>
@@ -38,8 +34,14 @@ export const Content = ({title, author, markdown}) => {
       >
         {author}
       </Text>
-      {isModalOpen && <Modal
-        title={title} author={author} markdown={markdown} close={close}/>}
+      {isModalOpen && (
+        <Modal
+          title={title} author={author} markdown={markdown}
+          close={() => {
+            setIsModalOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 };
