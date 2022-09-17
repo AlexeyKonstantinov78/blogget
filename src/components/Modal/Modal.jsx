@@ -6,6 +6,7 @@ import Markdown from 'markdown-to-jsx';
 import ReactDOM from 'react-dom';
 import {useCommentsData} from '../../hooks/useCommentsData';
 import Comments from './Comments';
+import FormComment from './FormComment';
 
 export const Modal = ({id, close}) => {
   const overlayRef = useRef(null);
@@ -51,6 +52,7 @@ export const Modal = ({id, close}) => {
                 </Markdown>
               </div>
               <p className={style.author}>{author}</p>
+              <FormComment />
               {(commentsData.length > 0) ?
                 (<Comments commentsData={
                   commentsData.filter(c => c.author !== undefined)
