@@ -20,7 +20,9 @@ components ->
         * Rating 
         * Time
     * Tabs
-  * Modal
+  * Modal -> 
+    * Comments
+    * FormComments
 
 context<br/> 
 fonts<br/>
