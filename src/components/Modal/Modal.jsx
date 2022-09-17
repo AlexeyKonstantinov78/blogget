@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import style from './Modal.module.css';
 import {ReactComponent as CloseIcon} from './img/close.svg';
 import PropTypes from 'prop-types';
@@ -10,6 +10,7 @@ import FormComment from './FormComment';
 
 export const Modal = ({id, close}) => {
   const overlayRef = useRef(null);
+  const [btnComment, setBtnComment] = useState(false);
   const [{
     title,
     author,
@@ -52,7 +53,18 @@ export const Modal = ({id, close}) => {
                 </Markdown>
               </div>
               <p className={style.author}>{author}</p>
-              <FormComment />
+              {!btnComment && (
+                <button
+                  className={style.btn}
+                  onClick={() => {
+                    setBtnComment(true);
+                  }}
+                >
+                  Написать комментарий
+                </button>
+              )
+              }
+              {btnComment && <FormComment />}
               {(commentsData.length > 0) ?
                 (<Comments commentsData={
                   commentsData.filter(c => c.author !== undefined)

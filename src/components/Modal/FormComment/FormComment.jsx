@@ -9,6 +9,7 @@ export const FormComment = props => {
 
   const sendFormCommit = (event) => {
     event.preventDefault();
+    formCommit.current.focus();
     console.log(formCommit.current.value);
   };
 
