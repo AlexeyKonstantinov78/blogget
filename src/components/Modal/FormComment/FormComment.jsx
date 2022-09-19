@@ -17,7 +17,10 @@ export const FormComment = props => {
     className={style.form}
     onSubmit={sendFormCommit}>
     <Text As='h3' size={14} tsize={18}>{auth.name}</Text>
-    <textarea className={style.textarea} ref={formCommit}></textarea>
+    <textarea
+      className={style.textarea}
+      value="Мой коментарий"
+      ref={formCommit}></textarea>
     <button className={style.btn}>Отправить</button>
   </form>;
 };
