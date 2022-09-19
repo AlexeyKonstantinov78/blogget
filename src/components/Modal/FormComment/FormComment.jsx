@@ -1,11 +1,12 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import style from './FormComment.module.css';
 import {Text} from '../../../UI/Text';
 import {authContext} from '../../../context/authContext';
+import {CommentContext} from '../../../context/commentContext';
 
 export const FormComment = props => {
   const {auth} = useContext(authContext);
-  const [value, setValue] = useState('');
+  const {value, setValue} = useContext(CommentContext);
 
   const sendFormCommit = (event) => {
     event.preventDefault();
