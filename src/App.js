@@ -10,7 +10,18 @@ const initialState = {
   comment: 'Привет Redux',
 };
 
-const rootReducer = (state = initialState, action) => state;
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'UPDATE_COMMENT':
+      return {
+        ...state,
+        comment: action.comment,
+      };
+    default:
+      return state;
+  }
+};
+
 const store = createStore(rootReducer);
 console.log('store: ', store);
 

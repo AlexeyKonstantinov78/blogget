@@ -2,13 +2,12 @@ import React, {useContext} from 'react';
 import style from './FormComment.module.css';
 import {Text} from '../../../UI/Text';
 import {authContext} from '../../../context/authContext';
-import {CommentContext} from '../../../context/commentContext';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 export const FormComment = props => {
   const value = useSelector(state => state.comment);
+  const dispatch = useDispatch();
   const {auth} = useContext(authContext);
-  const {setValue} = useContext(CommentContext);
 
   const sendFormCommit = (event) => {
     event.preventDefault();
@@ -16,8 +15,10 @@ export const FormComment = props => {
   };
 
   const handleChange = (event) => {
-    event.preventDefault();
-    setValue(event.target.value);
+    dispatch({
+      type: 'UPDATE_COMMENT',
+      comment: event.target.value,
+    });
   };
 
   return <form
