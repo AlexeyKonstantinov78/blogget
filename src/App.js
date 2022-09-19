@@ -10,6 +10,11 @@ const initialState = {
   comment: 'Привет Redux',
 };
 
+export const updateComment = comment => ({
+  type: 'UPDATE_COMMENT',
+  comment,
+});
+
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_COMMENT':

@@ -3,6 +3,7 @@ import style from './FormComment.module.css';
 import {Text} from '../../../UI/Text';
 import {authContext} from '../../../context/authContext';
 import {useDispatch, useSelector} from 'react-redux';
+import {updateComment} from '../../../App';
 
 export const FormComment = props => {
   const value = useSelector(state => state.comment);
@@ -15,10 +16,7 @@ export const FormComment = props => {
   };
 
   const handleChange = (event) => {
-    dispatch({
-      type: 'UPDATE_COMMENT',
-      comment: event.target.value,
-    });
+    dispatch(updateComment(event.target.value));
   };
 
   return <form
