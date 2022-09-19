@@ -41,6 +41,13 @@ utils<br/>
 * Пакет [classnames](https://www.npmjs.com/package/classnames) (npm i classnames) 
 * Пакет [react-inlinesvg](https://github.com/gilbarbara/react-inlinesvg) (npm i react-inlinesvg) для создания inline svg;
 * [npm i markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx) (npm i markdown-to-jsx) Компонент
+* 
+  
+  Пакет Redux [https://rajdee.gitbooks.io/redux-in-russian/content/](https://rajdee.gitbooks.io/redux-in-russian/content/)
+
+* npm install --save redux
+* npm install --save react-redux
+* npm install --save-dev redux-devtools
 
 
 Зарегистрировались на:

@@ -3,10 +3,13 @@ import style from './FormComment.module.css';
 import {Text} from '../../../UI/Text';
 import {authContext} from '../../../context/authContext';
 import {CommentContext} from '../../../context/commentContext';
+import {useStore} from 'react-redux';
 
 export const FormComment = props => {
+  const store = useStore();
+  const value = store.getState().comment;
   const {auth} = useContext(authContext);
-  const {value, setValue} = useContext(CommentContext);
+  const {setValue} = useContext(CommentContext);
 
   const sendFormCommit = (event) => {
     event.preventDefault();
