@@ -3,10 +3,10 @@ import style from './FormComment.module.css';
 import { Text } from '../../../UI/Text';
 import { authContext } from '../../../context/authContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateComment } from '../../../store';
+import { updateComment } from '../../../store/commentReduser';
 
 export const FormComment = (props) => {
-  const value = useSelector((state) => state.comment);
+  const value = useSelector((state) => state.comment.comment);
   const dispatch = useDispatch();
   const { auth } = useContext(authContext);
 

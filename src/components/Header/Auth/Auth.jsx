@@ -6,10 +6,10 @@ import { urlAuth } from '../../../API/auth';
 import { Text } from '../../../UI/Text';
 import { authContext } from '../../../context/authContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteToken } from '../../../store';
+import { deleteToken } from '../../../store/tokenReducer';
 
 export const Auth = () => {
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
   const [logout, setLogout] = useState(false);
   const { auth, clearAuth } = useContext(authContext);
