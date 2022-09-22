@@ -163,7 +163,7 @@
       {
         "var": "never",
         "let": "never",
-        "const": "never",
+        "const": "never"
       }
     ],
     "operator-linebreak": ["error", "after"],
