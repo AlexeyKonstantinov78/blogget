@@ -1,10 +1,10 @@
-import {useState, useEffect} from 'react';
-import {URL} from '../API/const';
-import {useDispatch, useSelector} from 'react-redux';
-import {deleteToken} from '../store';
+import { useState, useEffect } from 'react';
+import { URL } from '../API/const';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteToken } from '../store';
 
 export const useAuth = () => {
-  const token = useSelector(state => state.token);
+  const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
   const [auth, setAuth] = useState({});
 
@@ -23,11 +23,11 @@ export const useAuth = () => {
         }
         return response.json();
       })
-      .then(({name, icon_img: iconImg}) => {
+      .then(({ name, icon_img: iconImg }) => {
         const img = iconImg.replace(/\?.*$/, '');
-        setAuth({name, img});
+        setAuth({ name, img });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         setAuth({});
         dispatch(deleteToken(token));

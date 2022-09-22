@@ -1,6 +1,5 @@
-import {createStore} from 'redux';
-import {getToken, setToken} from '../API/token';
-
+import { createStore } from 'redux';
+import { getToken, setToken } from '../API/token';
 
 const initialState = {
   comment: 'Привет Redux',
@@ -11,16 +10,16 @@ const UPDATE_COMMENT = 'UPDATE_COMMENT';
 const UPDATE_TOKEN = 'UPDATE_TOKEN';
 const DELETE_TOKEN = 'DELETE_TOKEN';
 
-export const updateComment = comment => ({
+export const updateComment = (comment) => ({
   type: UPDATE_COMMENT,
   comment,
 });
 
-export const updateToken = token => ({
+export const updateToken = (token) => ({
   type: UPDATE_TOKEN,
   token,
 });
-export const deleteToken = token => ({
+export const deleteToken = (token) => ({
   type: DELETE_TOKEN,
   token,
 });

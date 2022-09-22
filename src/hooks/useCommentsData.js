@@ -1,12 +1,12 @@
-import {useState, useEffect} from 'react';
-import {URL} from '../API/const';
+import { useState, useEffect } from 'react';
+import { URL } from '../API/const';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const useCommentsData = (id) => {
   const [post, setPost] = useState({});
   const [commentsData, setCommentsData] = useState({});
-  const token = useSelector(state => state.token);
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
     if (!token) return;
@@ -23,16 +23,17 @@ export const useCommentsData = (id) => {
         return response.json();
       })
       .then((postData) => {
-        const data = postData.map(
-          item => item.data.children)[0].map(item => item.data)[0];
-        const comments =
-          postData.map(item => item.data.children)[1]
-            .map(item => item.data);
+        const data = postData
+          .map((item) => item.data.children)[0]
+          .map((item) => item.data)[0];
+        const comments = postData
+          .map((item) => item.data.children)[1]
+          .map((item) => item.data);
 
         setPost(data);
         setCommentsData(comments);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }, [token]);

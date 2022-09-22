@@ -1,10 +1,10 @@
-import {useState, useEffect} from 'react';
-import {URL} from '../API/const';
-import {useSelector} from 'react-redux';
+import { useState, useEffect } from 'react';
+import { URL } from '../API/const';
+import { useSelector } from 'react-redux';
 
 export const usePost = () => {
   const [posts, setPosts] = useState({});
-  const token = useSelector(state => state.token);
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
     if (!token) return;
@@ -21,10 +21,10 @@ export const usePost = () => {
         return response.json();
       })
       .then((postData) => {
-        const data = postData.data.children.map(item => item.data);
+        const data = postData.data.children.map((item) => item.data);
         setPosts(data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }, [token]);
