@@ -7,7 +7,7 @@ import Rating from './Rating';
 import Time from './Time';
 import ButtonDelete from './ButtonDelete';
 
-export const Post = ({postData}) => {
+export const Post = ({ postData }) => {
   const {
     id,
     thumbnail,
@@ -15,19 +15,23 @@ export const Post = ({postData}) => {
     author,
     ups,
     selftext: markdown,
-    created: date} = postData;
+    created: date,
+  } = postData;
 
   return (
     <li className={style.post}>
       <img
         className={style.img}
         src={
-          (thumbnail === 'self' ||
-            thumbnail === undefined ||
-            thumbnail === '' ||
-            thumbnail === 'default') ? notfoto : thumbnail
+          thumbnail === 'self' ||
+          thumbnail === undefined ||
+          thumbnail === '' ||
+          thumbnail === 'default' ?
+            notfoto :
+            thumbnail
         }
-        alt={title} />
+        alt={title}
+      />
       <Content id={id} title={title} author={author} markdown={markdown} />
       <Rating ups={ups} />
       <Time date={date} />

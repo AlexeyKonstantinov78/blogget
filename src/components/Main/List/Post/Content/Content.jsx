@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import style from './Content.module.css';
 import PropTypes from 'prop-types';
-import {Text} from '../../../../../UI/Text';
+import { Text } from '../../../../../UI/Text';
 import Modal from '../../../../Modal';
 
-export const Content = ({id, title, author, markdown}) => {
+export const Content = ({ id, title, author, markdown }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -15,11 +15,10 @@ export const Content = ({id, title, author, markdown}) => {
           size={18}
           tsize={24}
           className={style.linkPost}
-          href="#post"
+          href='#post'
           onClick={() => {
             setIsModalOpen(true);
-          }}
-        >
+          }}>
           {title}
         </Text>
       </Text>
@@ -29,8 +28,7 @@ export const Content = ({id, title, author, markdown}) => {
         tsize={14}
         color='orange'
         className={style.linkAuthor}
-        href="#author"
-      >
+        href='#author'>
         {author}
       </Text>
       {isModalOpen && (
@@ -50,5 +48,5 @@ Content.propTypes = {
   props: PropTypes.object,
   title: PropTypes.string,
   author: PropTypes.string,
-  markdown: PropTypes.string
+  markdown: PropTypes.string,
 };
