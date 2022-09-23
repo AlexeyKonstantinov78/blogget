@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { URL } from '../API/const';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteToken } from '../store/tokenReducer';
 import {
+  authLogout,
   authRequest,
   authRequestError,
   authRequestSuccess,
@@ -12,7 +13,8 @@ import axios from 'axios';
 export const useAuth = () => {
   const token = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
-  const [auth, setAuth] = useState({});
+  const auth = useSelector((state) => state.auth.data);
+  // const [auth, setAuth] = useState({});
 
   useEffect(() => {
     if (!token) return;
@@ -26,17 +28,15 @@ export const useAuth = () => {
       .then(({ data: { name, icon_img: iconImg } }) => {
         const img = iconImg.replace(/\?.*$/, '');
         const data = { name, img };
-        setAuth({ name, img });
         dispatch(authRequestSuccess(data));
       })
       .catch((err) => {
         console.error(err);
-        setAuth({});
         dispatch(deleteToken(token));
         dispatch(authRequestError(err.toString()));
       });
   }, [token]);
 
-  const clearAuth = () => setAuth({});
+  const clearAuth = () => dispatch(authLogout());
   return [auth, clearAuth];
 };
