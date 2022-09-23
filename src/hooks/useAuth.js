@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import { URL } from '../API/const';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteToken } from '../store/tokenReducer';
+import {
+  authRequest,
+  authRequestError,
+  authRequestSuccess,
+} from '../store/auth/action';
+
 
 export const useAuth = () => {
   const token = useSelector((state) => state.token.token);
@@ -10,8 +16,9 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (!token) return;
+    dispatch(authRequest());
 
-    fetch(`${URL}/api/v1/me`, {
+    fetch(`${URL}/api/v1/m`, {
       headers: {
         Authorization: `bearer ${token}`,
       },
@@ -25,12 +32,15 @@ export const useAuth = () => {
       })
       .then(({ name, icon_img: iconImg }) => {
         const img = iconImg.replace(/\?.*$/, '');
+        const data = { name, img };
         setAuth({ name, img });
+        dispatch(authRequestSuccess(data));
       })
       .catch((err) => {
         console.error(err);
         setAuth({});
         dispatch(deleteToken(token));
+        dispatch(authRequestError(err));
       });
   }, [token]);
 
