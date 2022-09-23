@@ -49,8 +49,7 @@ utils<br/>
 * npm install --save react-redux
 * npm install --save-dev redux-devtools
 * Пакет [Redux Thunk](https://github.com/reduxjs/redux-thunk)  пакет Middleware для работы с асинхронными запросами.(npm install redux-thunk)
-
-
+* Пакет [AXIOS](https://www.npmjs.com/package/axios) (npm i axios) - для обработки запросов
 
 Зарегистрировались на:
 

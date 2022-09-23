@@ -7,7 +7,7 @@ import {
   authRequestError,
   authRequestSuccess,
 } from '../store/auth/action';
-
+import axios from 'axios';
 
 export const useAuth = () => {
   const token = useSelector((state) => state.token.token);
@@ -18,19 +18,12 @@ export const useAuth = () => {
     if (!token) return;
     dispatch(authRequest());
 
-    fetch(`${URL}/api/v1/m`, {
+    axios(`${URL}/api/v1/me`, {
       headers: {
         Authorization: `bearer ${token}`,
       },
     })
-      .then((response) => {
-        if (response.status === 401) {
-          console.log(response.status);
-          throw new Error(`сервер статус ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(({ name, icon_img: iconImg }) => {
+      .then(({ data: { name, icon_img: iconImg } }) => {
         const img = iconImg.replace(/\?.*$/, '');
         const data = { name, img };
         setAuth({ name, img });
@@ -40,7 +33,7 @@ export const useAuth = () => {
         console.error(err);
         setAuth({});
         dispatch(deleteToken(token));
-        dispatch(authRequestError(err));
+        dispatch(authRequestError(err.toString()));
       });
   }, [token]);
 
