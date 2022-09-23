@@ -7,12 +7,13 @@ import { Text } from '../../../UI/Text';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteToken } from '../../../store/tokenReducer';
 import { useAuth } from '../../../hooks/useAuth';
+import AuthLoader from './AuthLoader';
 
 export const Auth = () => {
   const token = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
   const [logout, setLogout] = useState(false);
-  const [auth, clearAuth] = useAuth();
+  const [auth, loading, clearAuth] = useAuth();
 
   const delTokenAuth = () => {
     dispatch(deleteToken(token));
@@ -21,7 +22,8 @@ export const Auth = () => {
 
   return (
     <div className={style.container}>
-      {auth.name ? (
+      {loading ? (<AuthLoader />) :
+        auth.name ? (
         <>
           <button
             className={style.btn}

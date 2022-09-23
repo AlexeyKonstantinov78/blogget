@@ -50,6 +50,7 @@ utils<br/>
 * npm install --save-dev redux-devtools
 * Пакет [Redux Thunk](https://github.com/reduxjs/redux-thunk)  пакет Middleware для работы с асинхронными запросами.(npm install redux-thunk)
 * Пакет [AXIOS](https://www.npmjs.com/package/axios) (npm i axios) - для обработки запросов
+* [React-spinners](https://www.davidhu.io/react-spinners/) - загрузка прелоадер
 
 Зарегистрировались на:
 

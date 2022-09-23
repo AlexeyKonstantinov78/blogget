@@ -7,6 +7,7 @@ import {
 
 export const useAuth = () => {
   const token = useSelector((state) => state.token.token);
+  const loading = useSelector((state) => state.auth.loading);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth.data);
 
@@ -15,5 +16,5 @@ export const useAuth = () => {
   }, [token]);
 
   const clearAuth = () => dispatch(authLogout());
-  return [auth, clearAuth];
+  return [auth, loading, clearAuth];
 };
