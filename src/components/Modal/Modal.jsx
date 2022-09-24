@@ -7,11 +7,12 @@ import ReactDOM from 'react-dom';
 import { useCommentsData } from '../../hooks/useCommentsData';
 import Comments from './Comments';
 import FormComment from './FormComment';
+import PreLoader from '../../UI/Preloader';
 
 export const Modal = ({ id, close }) => {
   const overlayRef = useRef(null);
   const [btnComment, setBtnComment] = useState(false);
-  const [{ title, author, selftext: markdown }, commentsData] =
+  const [{ title, author, selftext: markdown }, commentsData, status] =
     useCommentsData(id);
 
   const handleClick = (e) => {
@@ -34,7 +35,9 @@ export const Modal = ({ id, close }) => {
   return ReactDOM.createPortal(
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        {title ? (
+        {status === 'loading' && <PreLoader />}
+        {status === 'error' && 'Ошибка'}
+        {status === 'loaded' && (
           <>
             <h2 className={style.title}>{title}</h2>
             <div className={style.content}>
@@ -71,10 +74,6 @@ export const Modal = ({ id, close }) => {
             ) : (
               <></>
             )}
-          </>
-        ) : (
-          <>
-            <h2 className={style.title}>Загрузка</h2>
           </>
         )}
         <button className={style.close} onClick={close}>

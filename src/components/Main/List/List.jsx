@@ -1,7 +1,7 @@
 import style from './List.module.css';
 import Post from './Post';
 import { usePost } from '../../../hooks/usePost';
-import PostLoader from './PostLoader';
+import PreLoader from '../../../UI/Preloader';
 
 export const List = (props) => {
   const [posts, loading] = usePost();
@@ -21,7 +21,7 @@ export const List = (props) => {
   return (
     <>
       {loading ? (
-        <PostLoader />
+        <PreLoader />
       ) :
       <ul className={style.list}>Авторизуйтесь</ul>}
     </>
