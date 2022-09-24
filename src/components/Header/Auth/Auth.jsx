@@ -8,12 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteToken } from '../../../store/tokenReducer';
 import { useAuth } from '../../../hooks/useAuth';
 import AuthLoader from './AuthLoader';
+import ModalAuthError from '../../ModalAuthError';
 
 export const Auth = () => {
   const token = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
   const [logout, setLogout] = useState(false);
-  const [auth, loading, clearAuth] = useAuth();
+  const [auth, loading, clearAuth, authError] = useAuth();
 
   const delTokenAuth = () => {
     dispatch(deleteToken(token));
@@ -22,7 +23,7 @@ export const Auth = () => {
 
   return (
     <div className={style.container}>
-      {loading ? (<AuthLoader />) :
+      {(!authError && loading) ? (<AuthLoader />) :
         auth.name ? (
         <>
           <button
@@ -49,9 +50,12 @@ export const Auth = () => {
           )}
         </>
       ) : (
-        <Text className={style.authLink} As='a' href={urlAuth}>
-          <LoginIcon className={style.svg} width={128} height={128} />
-        </Text>
+        <>
+          <Text className={style.authLink} As='a' href={urlAuth}>
+            <LoginIcon className={style.svg} width={128} height={128} />
+          </Text>
+          {authError && <ModalAuthError authError={authError} />}
+        </>
       )}
     </div>
   );

@@ -15,6 +15,7 @@ export const Header = () => (
         <Auth />
       </div>
     </Layout>
+    <div id="modal__error-root"></div>
   </header>
 );
 
