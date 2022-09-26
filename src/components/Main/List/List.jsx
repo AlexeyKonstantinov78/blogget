@@ -11,7 +11,7 @@ export const List = (props) => {
       <ul className={style.list}>
         {posts && (
           posts.map((post) => (
-            <Post key={post.id} postData={post} />
+            <Post key={post.data.id} postData={post.data} />
           )))
         }
       </ul>

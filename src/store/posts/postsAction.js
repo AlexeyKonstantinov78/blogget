@@ -11,7 +11,8 @@ export const postsRequest = () => ({
 
 export const postsRequestSuccess = (data) => ({
   type: POST_REQUEST_SUCCESS,
-  data,
+  data: data.children,
+  after: data.after,
 });
 
 export const postsRequestError = (err) => ({
@@ -29,9 +30,8 @@ export const postsRequestAsync = () => (dispatch, getState) => {
       Authorization: `bearer ${token}`,
     },
   })
-    .then(({ data: postData }) => {
-      const data = postData.data.children.map((item) => item.data);
-      dispatch(postsRequestSuccess(data));
+    .then(({ data }) => {
+      dispatch(postsRequestSuccess(data.data));
     })
     .catch((err) => {
       console.error(err);

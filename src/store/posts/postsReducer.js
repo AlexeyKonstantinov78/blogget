@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
   data: {},
   error: '',
+  after: '',
 };
 
 export const postsReducer = (state = initialState, action) => {
@@ -24,6 +25,7 @@ export const postsReducer = (state = initialState, action) => {
         loading: false,
         data: action.data,
         error: '',
+        after: action.after,
       };
     case POST_REQUEST_ERROR:
       return {
