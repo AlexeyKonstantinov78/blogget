@@ -20,6 +20,11 @@ export const List = (props) => {
       rootMargin: '100px',
     });
     observer.observe(endList.current);
+    return () => {
+      if (endList.current) {
+        observer.unobserve(endList.current);
+      }
+    };
   }, [endList.current]);
 
   return (
