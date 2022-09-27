@@ -9,7 +9,7 @@ export const Comments = ({ commentsData }) => {
   return (
     <ul className={style.list}>
       {commentsData.length > 0 ? (
-        commentsData.map((comment) => (
+        commentsData.map((comment) => comment.body && (
           <li className={style.item} key={comment.id}>
             <Text As='h3' className={style.author} size={18} tsize={22}>
               {comment.author}

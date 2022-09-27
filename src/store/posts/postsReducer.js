@@ -50,6 +50,7 @@ export const postsReducer = (state = initialState, action) => {
     case CHANGE_PAGE:
       return {
         ...state,
+        data: {},
         page: action.page,
         after: '',
         isLast: false,

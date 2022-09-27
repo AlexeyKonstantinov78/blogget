@@ -62,23 +62,16 @@ export const Tabs = () => {
           className={style.list}
           onClick={() => setIsDropdownOpen(false)}>
           {LIST.map(({ value, id, Icon, link }) => (
-            <Text
-              As='li'
-              className={style.item}
-              key={id}
-              onClick={() => {
-                if (isDropdown) {
-                  setTabName(value);
+            <Text As='li' className={style.item} key={id}>
+              <Text As='button' className={style.btn}
+                onClick={() => {
+                  if (isDropdown) {
+                    setTabName(value);
+                  }
                   navigate(`/category/${link}`);
-                }
-              }}>
-              <Text As='button' className={style.btn}>
-                <Text
-                  As='a'
-                  href='/'
-                  onClick={(event) => event.preventDefault()}>
-                  {value}
-                </Text>
+                }}
+              >
+                {value}
                 {Icon && <Icon width={30} height={30} />}
               </Text>
             </Text>

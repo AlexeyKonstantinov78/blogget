@@ -4,7 +4,7 @@ import PreLoader from '../../../UI/Preloader';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postsRequestAsync } from '../../../store/posts/postsAction';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 
 export const List = (props) => {
   const posts = useSelector((state) => state.posts.data);
@@ -12,7 +12,6 @@ export const List = (props) => {
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
-  console.log('page: ', page);
 
   useEffect(() => {
     dispatch(postsRequestAsync(page));
@@ -38,12 +37,15 @@ export const List = (props) => {
   }, [endList.current]);
 
   return (
-    <ul className={style.list}>
-      {!loading && !posts.length && <>Авторизуйтесь</>}
-      {loading && <PreLoader />}
-      {posts.length &&
-        posts.map(({ data }) => <Post key={data.id} postData={data} />)}
-      <li ref={endList} className={style.end} />
-    </ul>
+    <>
+      <ul className={style.list}>
+        {!loading && !posts.length && <>Авторизуйтесь</>}
+        {loading && <PreLoader />}
+        {posts.length &&
+          posts.map(({ data }) => <Post key={data.id} postData={data} />)}
+        <li ref={endList} className={style.end} />
+      </ul>
+      <Outlet />
+    </>
   );
 };
