@@ -10,18 +10,20 @@ import { ReactComponent as ArrowIcon } from './img/arrow.svg';
 import { useEffect } from 'react';
 import { debounceRaf } from '../../../utils/debaunce';
 import { Text } from '../../../UI/Text';
+import { useNavigate } from 'react-router-dom';
 
 const LIST = [
-  { value: `Главная`, Icon: HomeIcon },
-  { value: `Топ`, Icon: TopIcon },
-  { value: `Лучшие`, Icon: BestIcon },
-  { value: `Горячие`, Icon: HotIcon },
+  { value: `Главная`, Icon: HomeIcon, link: 'rising' },
+  { value: `Топ`, Icon: TopIcon, link: 'top' },
+  { value: `Лучшие`, Icon: BestIcon, link: 'best' },
+  { value: `Горячие`, Icon: HotIcon, link: 'hot' },
 ].map(assignId);
 
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(true);
   const [tabName, setTabName] = useState('Главная');
+  const navigate = useNavigate();
 
   const handleResize = () => {
     if (document.documentElement.clientWidth < 780) {
@@ -59,7 +61,7 @@ export const Tabs = () => {
           As='ul'
           className={style.list}
           onClick={() => setIsDropdownOpen(false)}>
-          {LIST.map(({ value, id, Icon }) => (
+          {LIST.map(({ value, id, Icon, link }) => (
             <Text
               As='li'
               className={style.item}
@@ -67,6 +69,7 @@ export const Tabs = () => {
               onClick={() => {
                 if (isDropdown) {
                   setTabName(value);
+                  navigate(`/category/${link}`);
                 }
               }}>
               <Text As='button' className={style.btn}>
