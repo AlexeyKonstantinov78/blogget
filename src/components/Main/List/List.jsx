@@ -1,29 +1,38 @@
 import style from './List.module.css';
 import Post from './Post';
-import { usePost } from '../../../hooks/usePost';
 import PreLoader from '../../../UI/Preloader';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { postsRequestAsync } from '../../../store/posts/postsAction';
 
 export const List = (props) => {
-  const [posts, loading] = usePost();
+  const posts = useSelector((state => state.posts.data));
+  const loading = useSelector((state => state.posts.loading));
+  const endList = useRef(null);
+  const dispatch = useDispatch();
 
-  if (posts.length > 0) {
-    return (
-      <ul className={style.list}>
-        {posts && (
-          posts.map((post) => (
-            <Post key={post.data.id} postData={post.data} />
-          )))
-        }
-      </ul>
-    );
-  }
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        dispatch(postsRequestAsync());
+      }
+    }, {
+      rootMargin: '100px',
+    });
+    observer.observe(endList.current);
+  }, [endList.current]);
 
   return (
-    <>
-      {loading ? (
+    <ul className={style.list}>
+      {(!loading && !posts.length) && (<>Авторизуйтесь</>)}
+      {loading && (
         <PreLoader />
-      ) :
-      <ul className={style.list}>Авторизуйтесь</ul>}
-    </>
+      )}
+      {posts.length &&
+        posts.map(({ data }) => (
+          <Post key={data.id} postData={data} />
+        ))}
+      <li ref={endList} className={style.end} />
+    </ul>
   );
 };
