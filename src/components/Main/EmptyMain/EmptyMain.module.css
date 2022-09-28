@@ -1,0 +1,18 @@
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+.title {
+  margin-bottom: 15px;  
+}
+
+.present{
+  margin-bottom: 15px;
+}
+
+.text{
+  font-size: 19px;
+}
