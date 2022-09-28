@@ -9,6 +9,7 @@ import { Outlet, useParams } from 'react-router-dom';
 export const List = (props) => {
   const posts = useSelector((state) => state.posts.data);
   const loading = useSelector((state) => state.posts.loading);
+  const count = useSelector((state) => state.posts.count);
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
@@ -29,12 +30,13 @@ export const List = (props) => {
       }
     );
     observer.observe(endList.current);
+    if (count >= 2) observer.unobserve(endList.current);
     return () => {
       if (endList.current) {
         observer.unobserve(endList.current);
       }
     };
-  }, [endList.current]);
+  }, [endList.current, count]);
 
   return (
     <>
@@ -45,6 +47,14 @@ export const List = (props) => {
           posts.map(({ data }) => <Post key={data.id} postData={data} />)}
         <li ref={endList} className={style.end} />
       </ul>
+      {count >= 2 && (
+        <buttons
+          className={style.btn}
+          onClick={() => {
+            dispatch(postsRequestAsync());
+          }}
+        >Загрузить еще</buttons>
+      )}
       <Outlet />
     </>
   );
