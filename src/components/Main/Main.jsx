@@ -11,7 +11,8 @@ export const Main = (props) => (
     <Layout>
       <Tabs />
       <Routes>
-        <Route path='/' element={<EmptyMain />} />
+        <Route index element={<EmptyMain />} />
+        <Route path='/:auth' element={<EmptyMain />} />
         <Route path='/category/:page' element={<List />}>
           <Route path='post/:id' element={<Modal />} />
         </Route>
