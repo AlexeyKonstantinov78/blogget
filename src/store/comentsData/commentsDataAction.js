@@ -8,7 +8,7 @@ export const commentsDataRequestAsync = (id) => (dispatch, getState) => {
   if (!token) return;
   dispatch(commentsDataSlice.actions.commentsDataRequest());
 
-  axios(`${URL}/commentts/${id}`, {
+  axios(`${URL}/comments/${id}`, {
     headers: {
       Authorization: `bearer ${token}`,
     },
