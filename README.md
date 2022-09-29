@@ -52,6 +52,7 @@ utils<br/>
 * Пакет [AXIOS](https://www.npmjs.com/package/axios) (npm i axios) - для обработки запросов
 * [React-spinners](https://www.davidhu.io/react-spinners/) - загрузка прелоадер
 * [React-router](https://reactrouter.com/) (npm install react-router-dom@6)
+* [https://redux-toolkit.js.org/](https://redux-toolkit.js.org/) (npm install @reduxjs/toolkit)
 
 
 Зарегистрировались на:
