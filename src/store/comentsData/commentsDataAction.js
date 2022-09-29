@@ -1,32 +1,14 @@
 import axios from 'axios';
 import { URL } from '../../API/const';
-
-export const COMMENTS_DATA_REQUEST = 'COMMENTS_DATA_REQUEST';
-export const COMMENTS_DATA_SUCCESS = 'COMMENTS_DATA_SUCCESS';
-export const COMMENTS_DATA_ERROR = 'COMMENTS_DATA_ERROR';
-
-export const commentsDataRequest = () => ({
-  type: COMMENTS_DATA_REQUEST,
-});
-
-export const commentsDataRequestSuccess = (data, comments) => ({
-  type: COMMENTS_DATA_SUCCESS,
-  data,
-  comments,
-});
-
-export const commentsDataRequestError = (err) => ({
-  type: COMMENTS_DATA_ERROR,
-  err,
-});
+import { commentsDataSlice } from './commentsDataSlice';
 
 export const commentsDataRequestAsync = (id) => (dispatch, getState) => {
   const token = getState().token.token;
 
   if (!token) return;
-  dispatch(commentsDataRequest());
+  dispatch(commentsDataSlice.actions.commentsDataRequest());
 
-  axios(`${URL}/comments/${id}`, {
+  axios(`${URL}/commentts/${id}`, {
     headers: {
       Authorization: `bearer ${token}`,
     },
@@ -39,10 +21,15 @@ export const commentsDataRequestAsync = (id) => (dispatch, getState) => {
         .map((item) => item.data.children)[1]
         .map((item) => item.data);
 
-      dispatch(commentsDataRequestSuccess(data, comments));
+      dispatch(
+        commentsDataSlice.actions.commentsDataRequestSuccess(
+          { data, comments }));
     })
     .catch((err) => {
       console.error(err);
-      dispatch(commentsDataRequestError(err.toString()));
+      dispatch(
+        commentsDataSlice.actions.commentsDataRequestError(
+          { err: err.toString() }
+        ));
     });
 };
