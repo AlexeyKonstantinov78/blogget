@@ -47,13 +47,12 @@ export const List = (props) => {
           posts.map(({ data }) => <Post key={data.id} postData={data} />)}
         <li ref={endList} className={style.end} />
       </ul>
-      {count >= 2 && (
-        <buttons
-          className={style.btn}
-          onClick={() => {
-            dispatch(postsRequestAsync());
-          }}
-        >Загрузить еще</buttons>
+      {count >= 2 && (<button
+        className={style.btn}
+        onClick={() => {
+          dispatch(postsRequestAsync());
+        }}
+      >Загрузить еще</button>
       )}
       <Outlet />
     </>
