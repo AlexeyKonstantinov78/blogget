@@ -10,18 +10,25 @@ export const List = (props) => {
   const posts = useSelector((state) => state.posts.data);
   const loading = useSelector((state) => state.posts.loading);
   const count = useSelector((state) => state.posts.count);
+  const after = useSelector((state) => state.posts.after);
+  const token = useSelector((state) => state.token.token);
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
 
   useEffect(() => {
+    if (!token) return;
+    console.log('запсук useEfect page');
     dispatch(postsRequestAsync(page));
   }, [page]);
 
   useEffect(() => {
+    if (!posts.length) return;
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        console.log('запсук');
+        if (entries[0].isIntersecting && after) {
+          console.log('запсук useEfect observer');
           dispatch(postsRequestAsync());
         }
       },
@@ -29,24 +36,28 @@ export const List = (props) => {
         rootMargin: '100px',
       }
     );
+
     observer.observe(endList.current);
+
     if (count >= 2) observer.unobserve(endList.current);
     return () => {
       if (endList.current) {
         observer.unobserve(endList.current);
       }
     };
-  }, [endList.current, count]);
+  }, [endList.current, posts]);
 
   return (
     <>
+      {count < 1 && loading && <PreLoader />}
       <ul className={style.list}>
         {!loading && !posts.length && <>Авторизуйтесь</>}
-        {loading && <PreLoader />}
         {posts.length &&
-          posts.map(({ data }) => <Post key={data.id} postData={data} />)}
+          posts.map(({ data }) => <Post key={data.id} postData={data} />)
+        }
         <li ref={endList} className={style.end} />
       </ul>
+      {count >= 1 && loading && <PreLoader />}
       {count >= 2 && (<button
         className={style.btn}
         onClick={() => {
