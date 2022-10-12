@@ -18,7 +18,7 @@ export const postsRequestAsync = createAsyncThunk(
     // const isLast = getState().posts.isLast;
 
     if (!token || !loading) return;
-    console.log(after);
+
     return axios(`${URL}/${page}?limit=10&${after ? `after=${after}` : ''}`, {
       headers: {
         Authorization: `bearer ${token}`,

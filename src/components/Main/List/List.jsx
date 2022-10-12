@@ -18,7 +18,7 @@ export const List = (props) => {
 
   useEffect(() => {
     if (!token) return;
-    console.log('запсук useEfect page');
+
     dispatch(postsRequestAsync(page));
   }, [page]);
 
@@ -26,9 +26,7 @@ export const List = (props) => {
     if (!posts.length) return;
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log('запсук');
         if (entries[0].isIntersecting && after) {
-          console.log('запсук useEfect observer');
           dispatch(postsRequestAsync());
         }
       },

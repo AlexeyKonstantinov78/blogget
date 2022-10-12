@@ -17,7 +17,6 @@ export const postsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [postsRequestAsync.pending.type]: (state, action) => {
-      console.log(action);
       state.loading = true;
       state.error = '';
       if (action.meta.arg !== state.page && action.meta.arg !== undefined) {
