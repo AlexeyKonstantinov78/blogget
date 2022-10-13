@@ -1,4 +1,4 @@
-import { put, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest, select, call } from 'redux-saga/effects';
 import { URL } from '../../API/const';
 import axios from 'axios';
 import {
@@ -9,7 +9,7 @@ import {
 function* fetchSearch(search) {
   const token = yield select(state => state.token.token);
   try {
-    const request = yield axios(`${URL}/search/?q=${search}`, {
+    const request = yield call(axios, `${URL}/search/?q=${search}`, {
       headers: {
         Authorization: `bearer ${token}`,
       },
