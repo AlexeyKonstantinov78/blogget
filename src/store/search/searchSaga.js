@@ -4,9 +4,10 @@ import axios from 'axios';
 import {
   searchRequestError,
   searchRequestSuccess,
-  SEARCH_REQUEST } from './searchAction';
+  SEARCH_REQUEST,
+} from './searchAction';
 
-function* fetchSearch(search) {
+function* fetchSearch({ search }) {
   const token = yield select(state => state.token.token);
   try {
     const request = yield call(axios, `${URL}/search/?q=${search}`, {
