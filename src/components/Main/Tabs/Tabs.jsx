@@ -10,7 +10,8 @@ import { ReactComponent as ArrowIcon } from './img/arrow.svg';
 import { useEffect } from 'react';
 import { debounceRaf } from '../../../utils/debaunce';
 import { Text } from '../../../UI/Text';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const LIST = [
   { value: `Главная`, Icon: HomeIcon, link: 'rising' },
@@ -24,7 +25,11 @@ export const Tabs = () => {
   const [isDropdown, setIsDropdown] = useState(true);
   const [tabName, setTabName] = useState('Главная');
   const navigate = useNavigate();
+  // const { search: searchParams } = useParams();
+  const search = useSelector((state => state.search.search));
 
+  console.log(search);
+  console.log(useParams());
   const handleResize = () => {
     if (document.documentElement.clientWidth < 780) {
       setIsDropdown(true);
@@ -51,7 +56,7 @@ export const Tabs = () => {
             As='button'
             className={style.btn}
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            {tabName}
+            {search ? `Поиск слова ${search}` : tabName}
             <ArrowIcon width={15} height={15} />
           </Text>
         </Text>

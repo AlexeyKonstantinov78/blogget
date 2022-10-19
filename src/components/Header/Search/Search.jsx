@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchRequest } from '../../../store/search/searchAction';
 import style from './Search.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Search = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const handlerSubmit = (e) => {
     e.preventDefault();
+    navigate(`/search/${search}`);
     dispatch(searchRequest(search));
   };
 

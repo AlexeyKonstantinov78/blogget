@@ -12,6 +12,7 @@ const initialState = {
   isLast: false,
   page: '',
   count: 0,
+  search: '',
 };
 
 export const searchReducer = (state = initialState, action) => {
@@ -21,6 +22,7 @@ export const searchReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: '',
+        search: action.search,
       };
     case SEARCH_REQUEST_SUCCESS:
       return {

@@ -14,7 +14,7 @@ export const List = (props) => {
   const token = useSelector((state) => state.token.token);
   const endList = useRef(null);
   const dispatch = useDispatch();
-  const { page } = useParams();
+  const { search, page } = useParams();
 
   useEffect(() => {
     if (!token) return;
@@ -44,7 +44,7 @@ export const List = (props) => {
       }
     };
   }, [endList.current, posts]);
-
+  console.log(search);
   return (
     <>
       {count < 1 && loading && <PreLoader />}

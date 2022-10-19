@@ -13,10 +13,11 @@ export const Main = (props) => (
       <Tabs />
       <Routes>
         <Route path='/' element={<EmptyMain />} errorElement={<Error />} />
-        <Route path='/:auth' element={<EmptyMain />} />
+        <Route path='/search/:search' element={<List />} />
         <Route path='/category/:page' element={<List />}>
           <Route path='post/:id' element={<Modal />} />
         </Route>
+        <Route path='/:auth' element={<EmptyMain />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </Layout>
